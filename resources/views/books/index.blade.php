@@ -59,4 +59,8 @@
     @endforelse
 </ul>
 
+<nav>
+    {{ $books->appends(['filter' => request('filter'), 'title' => request('title')]) -> links()}}
+</nav>
+
 @endsection
