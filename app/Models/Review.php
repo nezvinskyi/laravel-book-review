@@ -9,10 +9,16 @@ class Review extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['review', 'rating'] ;
+    protected $fillable = ['review', 'rating'];
 
     public function book()
     {
         return $this->belongsTo(Book::class);
+    }
+
+    protected static function booted(): void
+    {
+        static::updated(fn(Review $review) => cache()->forget('book:' . $review->book_id));
+        static::deleted(fn(Review $review) => cache()->forget('book:' . $review->book_id));
     }
 }
