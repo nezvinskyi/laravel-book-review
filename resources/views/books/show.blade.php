@@ -40,4 +40,9 @@
       @endforelse
     </ul>
   </div>
+
+  <nav>
+    {{ $reviews->links() }}
+</nav>
+
 @endsection
