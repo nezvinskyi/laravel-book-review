@@ -69,7 +69,6 @@ class BookController extends Controller
             ])->withAvgRating()->withReviewsCount()->findOrFail($id)
         );
 
-        // $book = Book::with(['reviews'=> fn($query) => $query->latest()])->firstOrFail($id);  
         $reviews = $book->reviews()->latest()->paginate(5);
 
         return view('books.show', compact('book', 'reviews'));
